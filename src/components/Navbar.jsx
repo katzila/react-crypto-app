@@ -3,6 +3,8 @@ import { Button, Menu, Typography, Avatar } from 'antd';
 import { Link } from 'react-router-dom'
 import { HomeOutlined, MoneyCollectOutlined, BulbOutlined, FundOutlined, MenuOutLined } from '@ant-design/icons/lib/icons';
 
+import icon from '../images/cryptocurrency.png'
+
 const Navbar = () => {
     return (
         <div className='nav-container'>
