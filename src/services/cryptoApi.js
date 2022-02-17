@@ -3,7 +3,7 @@ import { apiKey } from '../apiKey';
 
 const cryptoApiHeaders = {
     'x-rapidapi-host': 'coinranking1.p.rapidapi.com',
-    'x-rapidapi-key': apiKey
+    'x-rapidapi-key': apiKey.cryptoKey
 }
 
 const baseUrl = 'https://coinranking1.p.rapidapi.com';
