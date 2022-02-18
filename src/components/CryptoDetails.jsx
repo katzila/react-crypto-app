@@ -35,6 +35,8 @@ const CryptoDetails = () => {
     { title: 'Circulating Supply', value: `$ ${cryptoDetails?.supply?.circulating && millify(cryptoDetails?.supply?.circulating)}`, icon: <ExclamationCircleOutlined /> },
   ];
 
+  if (isFetching) return 'Loading ... '
+
   return (
     <Col className='coin-detail=container'>
       <Col className='coin-heading-container'>
