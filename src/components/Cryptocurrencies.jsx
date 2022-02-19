@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import millify from 'millify';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Input } from 'antd';
+import { useQuery } from 'react-query';
 
-import { useGetCryptosQuery } from '../services/cryptoApi';
 import Loader from './Loader';
+import { getCryptos } from '../services/reactCryptoApi';
 
 const Cryptocurrencies = ({ simplified }) => {
   const count = simplified ? 10 : 100;
-  const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
+  const { data: cryptosList, isLoading } = useQuery('coins', ()=>getCryptos(count));
   const [cryptos, setCryptos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -18,7 +19,7 @@ const Cryptocurrencies = ({ simplified }) => {
     setCryptos(filteredData);
   }, [cryptosList, searchTerm])
 
-  if (isFetching) return <Loader/>
+  if (isLoading) return <Loader/>
 
   return (
     <>
