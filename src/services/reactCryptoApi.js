@@ -12,11 +12,11 @@ const getCryptos = async (count) => (
 )
 
 const getCryptoDetails = async (coinId) => (
-  await fetch(`${BASE_URL}/coin/${coinId}}`, { headers: cryptoApiHeaders }).then((res => res.json()))
+  await fetch(`${BASE_URL}/coin/${coinId}`, { headers: cryptoApiHeaders }).then((res => res.json()))
 )
 
 const getCryptoHistory = async ({ coinId, timePeriod }) => (
-  await fetch(`${BASE_URL}/coin/${coinId}/history?timePeriod=${timePeriod}}`,{ headers: cryptoApiHeaders }).then((res => res.json()))
+  await fetch(`${BASE_URL}/coin/${coinId}/history?timePeriod=${timePeriod}`,{ headers: cryptoApiHeaders }).then((res => res.json()))
 )
 
 
