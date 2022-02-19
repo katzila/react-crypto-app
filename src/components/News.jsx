@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import moment from 'moment';
 import { Typography, Row, Col, Select, Avatar, Card } from 'antd';
+import { useQuery } from 'react-query';
 
-import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
-import { useGetCryptosQuery } from '../services/cryptoApi';
+import { getCryptoNews } from '../services/cryptoNewsApi';
+import { getCryptos } from '../services/reactCryptoApi';
 import Loader from './Loader';
 
 const { Text, Title } = Typography;
@@ -13,13 +14,13 @@ const demoImage = 'https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=Ne
 
 const News = ({ simplified }) => {
   const [newsCategory, setNewsCategory] = useState('Cryptocurrency')
-  const { data: cryptoNews } = useGetCryptoNewsQuery({
+  const { data: cryptoNews } = useQuery('cryptoNews', () => getCryptoNews({
     newsCategory,
     count: simplified ? 6 : 12
-  })
-  const { data } = useGetCryptosQuery(100);
+  }))
+  const { data } = useQuery('coins', ()=>getCryptos(100));
 
-  if (!cryptoNews?.value) return <Loader/>
+  if (!cryptoNews?.value) return <Loader />
 
   return (
     <Row gutter={[24, 24]}>
