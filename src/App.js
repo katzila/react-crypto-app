@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Switch, Route, Link } from 'react-router-dom'
 import { Layout, Typography, Space } from 'antd'
 
@@ -6,10 +6,28 @@ import { Navbar, Exchanges, Homepage, CryptoDetails, Cryptocurrencies, News } fr
 import "./App.css"
 
 const App = () => {
+    const [activeMenu, setActiveMenu] = useState(true);
+    const [screenSize, setScreenSize] = useState(null);
+
+    useEffect(() => {
+        const handleResize = () => setScreenSize(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        return () => window.removeEventListener('resize', handleResize);
+    }, [])
+
+    useEffect(() => {
+        if (screenSize < 768) {
+            setActiveMenu(false);
+        } else {
+            setActiveMenu(true);
+        }
+    }, [screenSize])
+
     return (
-        <div className='app'>
+        <div className='app' onClick={() => { if (activeMenu && screenSize < 768) setActiveMenu(false) }}>
             <div className='navbar'>
-                <Navbar />
+                <Navbar activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
             </div>
             <div className='main'>
                 <Layout>
