@@ -1,33 +1,23 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { apiKey } from '../apiKey';
+import { apiKey } from "../apiKey"
+
+const BASE_URL = 'https://coinranking1.p.rapidapi.com'
 
 const cryptoApiHeaders = {
-    'x-rapidapi-host': 'coinranking1.p.rapidapi.com',
-    'x-rapidapi-key': apiKey.cryptoKey
+  'x-rapidapi-host': 'coinranking1.p.rapidapi.com',
+  'x-rapidapi-key': apiKey.cryptoKey
 }
 
-const baseUrl = 'https://coinranking1.p.rapidapi.com';
+const getCryptos = async (count) => (
+  await fetch(`${BASE_URL}/coins?limit=${count}`, { headers: cryptoApiHeaders }).then((res => res.json()))
+)
 
-const createRequest = (url) => ({ url, headers: cryptoApiHeaders })
+const getCryptoDetails = async (coinId) => (
+  await fetch(`${BASE_URL}/coin/${coinId}`, { headers: cryptoApiHeaders }).then((res => res.json()))
+)
 
-export const cryptoApi = createApi({
-    reducerPath: 'cryptoApi',
-    baseQuery: fetchBaseQuery({ baseUrl }),
-    endpoints: (builder) => ({
-        getCryptos: builder.query({
-            query: (count) => createRequest(`/coins?limit=${count}`)
-        }),
+const getCryptoHistory = async ({ coinId, timePeriod }) => (
+  await fetch(`${BASE_URL}/coin/${coinId}/history?timePeriod=${timePeriod}`,{ headers: cryptoApiHeaders }).then((res => res.json()))
+)
 
-        getCryptoDetails: builder.query({
-            query: (coinId) => createRequest(`/coin/${coinId}`)
-        }),
 
-        getCryptoHistory: builder.query({
-            query: ({ coinId, timePeriod }) => createRequest(`/coin/${coinId}/history?timePeriod=${timePeriod}`),
-        }),
-    })
-})
-
-export const {
-    useGetCryptosQuery, useGetCryptoDetailsQuery, useGetCryptoHistoryQuery,
-} = cryptoApi;
+export { getCryptos, getCryptoDetails, getCryptoHistory }

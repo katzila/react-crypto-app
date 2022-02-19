@@ -6,7 +6,7 @@ import { useQuery } from 'react-query';
 
 import { Cryptocurrencies, News } from '../components'
 import Loader from './Loader';
-import { getCryptos } from '../services/reactCryptoApi';
+import { getCryptos } from '../services/cryptoApi';
 
 
 const { Title } = Typography;

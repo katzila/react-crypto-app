@@ -4,7 +4,7 @@ import { Typography, Row, Col, Select, Avatar, Card } from 'antd';
 import { useQuery } from 'react-query';
 
 import { getCryptoNews } from '../services/cryptoNewsApi';
-import { getCryptos } from '../services/reactCryptoApi';
+import { getCryptos } from '../services/cryptoApi';
 import Loader from './Loader';
 
 const { Text, Title } = Typography;

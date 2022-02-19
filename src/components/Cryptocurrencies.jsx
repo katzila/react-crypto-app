@@ -5,7 +5,7 @@ import { Card, Row, Col, Input } from 'antd';
 import { useQuery } from 'react-query';
 
 import Loader from './Loader';
-import { getCryptos } from '../services/reactCryptoApi';
+import { getCryptos } from '../services/cryptoApi';
 
 const Cryptocurrencies = ({ simplified }) => {
   const count = simplified ? 10 : 100;

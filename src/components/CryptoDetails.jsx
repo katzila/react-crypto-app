@@ -8,7 +8,7 @@ import { useQuery } from 'react-query';
 
 import LineChart from './LineChart';
 import Loader from './Loader';
-import { getCryptoDetails, getCryptoHistory } from '../services/reactCryptoApi';
+import { getCryptoDetails, getCryptoHistory } from '../services/cryptoApi';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
